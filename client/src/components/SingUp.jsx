@@ -44,7 +44,7 @@ const SignUp = () => {
                 password: hashedPassword,
             };
 
-            const response = await axios.post('http://localhost:8000/signup', userPayload, {
+            const response = await axios.post('https://expressreactsso.onrender.com/signup', userPayload, {
                 headers: {
                     "Content-Type": "application/json"
                 }

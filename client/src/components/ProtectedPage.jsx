@@ -11,7 +11,7 @@ const ProtectedPage = () => {
     if (!token) {
       navigate('/signin');
     } else {
-      fetch('http://localhost:8000/protected', {
+      fetch('https://expressreactsso.onrender.com/protected', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,

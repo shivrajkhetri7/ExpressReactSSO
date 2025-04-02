@@ -4,6 +4,9 @@ import axios from 'axios';
 import { useAuth0 } from '@auth0/auth0-react';
 import { login } from '../utils/api';
 
+const CLIENT_1_LOGIN_URL = "http://localhost:5173/signin"; 
+const CLIENT_1_CALLBACK_URL = "http://localhost:5174/auth/callback"; 
+
 const SignIn = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -12,21 +15,17 @@ const SignIn = () => {
   const { loginWithRedirect, isAuthenticated, user } = useAuth0();
 
   useEffect(() => {
-      if (isAuthenticated) {
-          // Store the Auth0 token in localStorage (optional, depending on your API)
-          user?.sub && localStorage.setItem('authToken', user.sub);
-          navigate('/protected');
-      }
-  }, [isAuthenticated, user, navigate]);
-
+    const authToken = localStorage.getItem("authToken");
+    if (authToken) {
+      navigate("/protected");
+    }
+  }, [navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       const response = await login(username, password);
-
-      // Store the JWT token in localStorage
       localStorage.setItem('authToken', response?.data.token);
       navigate('/protected');
     } catch (err) {
@@ -34,9 +33,14 @@ const SignIn = () => {
     }
   };
 
+  const handleSSOLogin = () => {
+    localStorage.setItem("returnTo", window.location.href);
+    window.location.href = `${CLIENT_1_LOGIN_URL}?redirect_uri=${encodeURIComponent(CLIENT_1_CALLBACK_URL)}`;
+  };
+
   return (
     <div>
-      <h2>Sign In</h2>
+      <h2>Sign In Client 2</h2>
       {error && <div style={{ color: 'red' }}>{error}</div>}
       <form onSubmit={handleSubmit}>
         <input
@@ -53,9 +57,9 @@ const SignIn = () => {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        {/* <button type='submit' className='btn'>Sign In</button> */}
-        <button className='btn' onClick={() => navigate('/')}>Sing Up</button>
-        <button className='btn' onClick={() => loginWithRedirect()} >Sing in With TopSchool</button>
+        <button type="submit" className="btn">Sign In</button>
+        <button className="btn" onClick={() => navigate('/')}>Sign Up</button>
+        <button className="btn" onClick={handleSSOLogin}>Sign in With Client 1</button>
       </form>
     </div>
   );

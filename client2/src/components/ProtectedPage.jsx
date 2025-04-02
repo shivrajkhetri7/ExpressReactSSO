@@ -11,7 +11,7 @@ const ProtectedPage = () => {
     if (!token) {
       navigate('/signin');
     } else {
-      fetch('http://localhost:8000/protected', {
+      fetch('https://expressreactsso.onrender.com/protected', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -39,7 +39,7 @@ const ProtectedPage = () => {
     <div>
       {user ? (
         <div>
-          <h1>Protected Page</h1>
+          <h1>Protected Page 2</h1>
           <p>Welcome, {user?.firstName} {user?.lastName}</p>
         </div>
       ) : (

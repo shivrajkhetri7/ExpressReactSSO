@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import ProtectedPage from './components/ProtectedPage';
+import AuthCallback from './components/AuthCallback';
 
 const App = () => {
   const navigate = useNavigate();
@@ -21,6 +22,7 @@ const App = () => {
       <Routes>
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/auth/callback" element={<AuthCallback />}/>
         <Route path="/protected" element={<ProtectedPage />} />
       </Routes>
     </div>

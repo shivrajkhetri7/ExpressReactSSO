@@ -1,15 +1,23 @@
 import '../style/signin.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import axios from 'axios';
-import { useAuth0 } from '@auth0/auth0-react';
 import { toast } from 'react-toastify';
-
 
 const SignIn = () => {
     const navigate = useNavigate();
     const [userDetails, setUserDetails] = useState({});
     const [error, setError] = useState('');
+    const [redirectTo, setRedirectTo] = useState('');
+
+    // Extract the redirect URL from query params (Fix: use "redirect_uri" instead of "redirect")
+    useEffect(() => {
+        const params = new URLSearchParams(window.location.search);
+        const redirectParam = params.get("redirect_uri");
+        if (redirectParam) {
+            setRedirectTo(redirectParam);
+        }
+    }, []);
 
     const handleChange = (event) => {
         setUserDetails({ ...userDetails, [event?.target?.name]: event?.target?.value });
@@ -25,22 +33,24 @@ const SignIn = () => {
         event.preventDefault();
 
         try {
-
             await loginPayloadValidation(userDetails);
 
-            const headers = {
-                'Content-Type': "application/json",
-            };
+            const headers = { 'Content-Type': "application/json" };
+            const response = await axios.post('https://expressreactsso.onrender.com/signin', userDetails, { headers });
 
-            const response = await axios.post('http://localhost:8000/signin', userDetails, { headers });
             if (response?.status === 200) {
-                localStorage.setItem('authToken', response?.data.token)
-                toast.success('sing in successfully')
-                navigate('/dashboard')
+                localStorage.setItem('authToken', response?.data.token);
+                toast.success('Signed in successfully');
+
+                if (redirectTo) {
+                    // ✅ Redirect back to Client 2 with the token
+                    window.location.href = `${redirectTo}?token=${response?.data.token}`;
+                } else {
+                    navigate('/dashboard'); // Stay on Client 1 if no redirect
+                }
             }
         } catch (error) {
-            toast.error(error.message || error?.error || 'something went wrong')
-            console.error("Error during sign in:", error);
+            toast.error(error.message || 'Something went wrong');
             setError(error.message);
         }
     };
@@ -49,12 +59,12 @@ const SignIn = () => {
         <div className='sign-in'>
             <div className='container_singin'>
                 <form onSubmit={handleSubmit}>
-                    <p className='title'>Sing IN</p>
+                    <p className='title'>Sign In</p>
                     <input
                         type='email'
                         name='username'
                         placeholder='Email'
-                        value={userDetails?.username}
+                        value={userDetails?.username || ''}
                         onChange={handleChange}
                         autoComplete='off'
                     />
@@ -62,12 +72,11 @@ const SignIn = () => {
                         type='password'
                         name='password'
                         placeholder='Password'
-                        value={userDetails?.password}
+                        value={userDetails?.password || ''}
                         onChange={handleChange}
                         autoComplete='off'
                     />
                     <button type='submit' className='btn'>Sign In</button>
-                    <button className='btn' onClick={() => navigate('/')}>Sing Up</button>
                 </form>
             </div>
         </div>
