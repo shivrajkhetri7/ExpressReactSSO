@@ -1,0 +1,103 @@
+.sign-in {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    background-color: #6358DC;
+    justify-content: center;
+    align-items: center;
+
+    .container_singin {
+        border: 2px solid #fff;
+        height: 60%;
+        width: 85%;
+        background-color: transparent;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 16px;
+
+
+        form {
+            border-radius: 16px;
+            background-color: #fff;
+            height: 85%;
+            width: 85%;
+            padding: 1.5rem 1rem;
+            display: flex;
+            flex-direction: column;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            gap: 1.3rem;
+
+            .title {
+                font-weight: 800;
+                font-size: 5vh;
+            }
+
+            input[type="text"],
+            input[type="email"],
+            input[type="password"],
+            input[type="date"] {
+                width: 100%;
+                height: 2rem;
+            }
+
+            input[type="text"]::placeholder,
+            input[type="password"]::placeholder,
+            input[type="email"]::placeholder,
+            input[type="date"]::placeholder {
+                text-transform: capitalize;
+            }
+
+            .btn {
+                width: 100%;
+                height: 2rem;
+                font-weight: 600;
+                background-color: #6358DC;
+                color: #fff;
+                border: none;
+                border-radius: 6px;
+            }
+        }
+    }
+}
+
+@media screen and (min-width : 720px) {
+    .sign-in {
+        .container_singin {
+            border: 2px solid #fff;
+            width: 30%;
+            background-color: transparent;
+            
+            form {
+                width: 85%;
+                box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+                input[type="text"],
+                input[type="password"],
+                input[type="email"],
+                input[type="date"] {
+                    width: 100%;
+                    height: 2rem;
+                }
+
+                input[type="text"]::placeholder,
+                input[type="password"]::placeholder,
+                input[type="email"]::placeholder,
+                input[type="date"]::placeholder {
+                    text-transform: capitalize;
+                }
+
+                .btn {
+                    width: 100%;
+                    height: 2rem;
+                    font-weight: 600;
+                    background-color: #6358DC;
+                    color: #fff;
+                    border: none;
+                    border-radius: 6px;
+                }
+            }
+        }
+    }
+
+}

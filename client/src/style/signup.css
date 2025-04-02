@@ -1,0 +1,139 @@
+.signup {
+    background-color: #6358DC;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .inner-container {
+        width: 90%;
+        height: 90%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        border-radius: 16px;
+        gap: 3rem;
+        background-color: #E5E5E5;
+
+        .design {
+            box-sizing: border-box;
+            object-fit: cover;
+
+            img {
+                height: 250px;
+                width: 250px;
+            }
+        }
+
+        form {
+            background-color: #fff;
+            height: 50%;
+            width: 80%;
+            padding: 1.5rem 1rem;
+            display: flex;
+            flex-direction: column;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            gap: 1.3rem;
+
+            .title{
+                font-weight: 800;
+                font-size: 5vh;
+            }
+
+            input[type="text"],
+            input[type="email"],
+            input[type="password"],
+            input[type="date"] {
+                width: 100%;
+                height: 2rem;
+            }
+
+            input[type="text"]::placeholder,
+            input[type="email"]::placeholder,
+            input[type="password"]::placeholder,
+            input[type="date"]::placeholder {
+                text-transform: capitalize;
+            }
+
+            .btn {
+                width: 100%;
+                height: 2rem;
+                font-weight: 600;
+                background-color: #6358DC;
+                color: #fff;
+                border: none;
+                border-radius: 6px;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1020px) {
+    .signup {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .inner-container {
+            border-radius: 16px;
+            width: 80%;
+            height: 80%;
+            background-color: #E5E5E5;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+
+            .design {
+                width: 50%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                img {
+                    height: 400px;
+                    width: 400px;
+                }
+            }
+
+            form {
+                background-color: #fff;
+                border-radius: 16px;
+                width: 50%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+                input[type="text"],
+                input[type="password"],
+                input[type="email"],
+                input[type="date"] {
+                    width: 100%;
+                    height: 2rem;
+                }
+
+                input[type="text"]::placeholder,
+                input[type="password"]::placeholder,
+                input[type="email"]::placeholder,
+                input[type="date"]::placeholder {
+                    text-transform: capitalize;
+                }
+
+                .btn {
+                    width: 100%;
+                    height: 2rem;
+                    font-weight: 600;
+                    background-color: #6358DC;
+                    color: #fff;
+                }
+            }
+        }
+    }
+}
