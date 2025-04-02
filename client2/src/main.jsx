@@ -11,7 +11,7 @@ createRoot(document.getElementById('root')).render(
       domain="dev-cleotwwixnrp37lv.us.auth0.com"
       clientId="syangxSsuSqYR1GiD0Lfrdl8uND817sN"
       authorizationParams={{
-         redirect_uri: window.location.origin
+         redirect_uri: 'https://express-react-sso.vercel.app/'
       }}
     >
       <BrowserRouter>

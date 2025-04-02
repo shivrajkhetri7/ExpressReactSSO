@@ -25,10 +25,6 @@ const SignIn = () => {
         event.preventDefault();
 
         try {
-            const token = localStorage.getItem('token');
-            if (!token) {
-                throw new Error("No token found in local storage");
-            }
 
             await loginPayloadValidation(userDetails);
 
@@ -38,7 +34,6 @@ const SignIn = () => {
             };
 
             const response = await axios.post('http://localhost:8000/signin', userDetails, { headers });
-            console.log(response, ",,,")
             if (response?.status === 200) {
                 localStorage.setItem('authToken', response?.data.token)
                 toast.success('sing in successfully')
