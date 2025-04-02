@@ -4,8 +4,8 @@ import axios from 'axios';
 import { useAuth0 } from '@auth0/auth0-react';
 import { login } from '../utils/api';
 
-const CLIENT_1_LOGIN_URL = "http://localhost:5173/signin"; 
-const CLIENT_1_CALLBACK_URL = "http://localhost:5174/auth/callback"; 
+const CLIENT_1_LOGIN_URL = "https://express-react-sso.vercel.app/signin"; 
+const CLIENT_1_CALLBACK_URL = "https://express-react-sso-jpnh.vercel.app/auth/callback"; 
 
 const SignIn = () => {
   const [username, setUsername] = useState('');
