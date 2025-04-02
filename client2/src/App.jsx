@@ -20,7 +20,7 @@ const App = () => {
   return (
     <div className="app">
       <Routes>
-        <Route path="/signin" element={<SignIn />} />
+        <Route path="/" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/auth/callback" element={<AuthCallback />}/>
         <Route path="/protected" element={<ProtectedPage />} />
