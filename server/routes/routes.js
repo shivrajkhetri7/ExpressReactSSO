@@ -1,5 +1,6 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
+const axios = require('axios')
 const { createUser, validateUser } = require("../controller/userController");
 const router = express.Router();
 
@@ -85,5 +86,22 @@ router.post("/refresh-token", (req, res) => {
         res.json({ accessToken: newAccessToken });
     });
 });
+
+// var options = {
+//   method: 'PATCH',
+//   url: 'https://dev-cleotwwixnrp37lv.us.auth0.com/api/v2/clients/5h37UGT9hnSp3vNejqUsZNaNdiHahb5r',
+//   headers: {
+//     'content-type': 'application/json',
+//     authorization: 'Bearer API2_ACCESS_TOKEN',
+//     'cache-control': 'no-cache'
+//   },
+//   data: {initiate_login_uri: 'https://express-react-sso.vercel.app/'}
+// };
+
+// axios.request(options).then(function (response) {
+//   console.log(response.data);
+// }).catch(function (error) {
+//   console.error(error);
+// });
 
 module.exports = router;
